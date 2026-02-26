@@ -1,0 +1,286 @@
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  color:white;
+}
+
+/* 🎥 VIDEO */
+#bgVideo{
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  filter:brightness(.7);
+}
+
+/* 💎 MAIN CARD */
+.card{
+  text-align:center;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,.3);
+  padding:30px;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(255,215,0,.4);
+  width:90%;
+  max-width:850px;
+}
+
+.title{
+  font-family:'Cinzel',serif;
+  font-size:60px;
+  margin:0;
+  letter-spacing:5px;
+  text-shadow:0 0 20px gold;
+}
+
+.tag{ margin-top:5px; }
+
+.center-layout{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  margin:20px 0;
+}
+
+/* 🎂 CAKE */
+.cake{
+  width:110px;
+  height:110px;
+  background:linear-gradient(#ffb6c1,#ff69b4);
+  border-radius:20px;
+  box-shadow:0 0 25px gold;
+  animation:float 2s infinite alternate;
+}
+
+/* 🎡 3D RING */
+.ring3d{
+  position:relative;
+  width:260px;
+  height:260px;
+  transform-style:preserve-3d;
+  animation:spin 20s linear infinite;
+}
+
+.ring3d img{
+  position:absolute;
+  width:130px;
+  height:130px;
+  object-fit:cover;
+  border-radius:18px;
+  left:60px;
+  top:60px;
+  border:3px solid rgba(255,255,255,.4);
+  box-shadow:0 0 20px gold;
+
+  transform:
+    rotateY(calc(var(--i)*60deg))
+    translateZ(260px);
+}
+
+/* TIMER */
+.timer{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.timer div{
+  background:white;
+  color:#ff2f6f;
+  padding:10px;
+  border-radius:12px;
+  width:60px;
+}
+
+/* ANIMATIONS */
+@keyframes spin{
+  from{transform:rotateY(0deg);}
+  to{transform:rotateY(360deg);}
+}
+
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(-8px);}
+}
+/* 👑 Crown Position */
+.title{
+  position:relative;
+}
+
+.title .crown{
+  position:absolute;
+  top:-28px;
+  left:10px;
+  font-size:28px;
+  animation:crownFloat 2s ease-in-out infinite alternate;
+}
+
+@keyframes crownFloat{
+  from{transform:translateY(0);}
+  to{transform:translateY(-6px);}
+}
+
+/* ✨ Glass Shimmer Border */
+.card{
+  border:1px solid rgba(255,255,255,.25);
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:-100%;
+  left:-50%;
+  width:200%;
+  height:300%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+  transform:rotate(20deg);
+  animation:shimmer 6s linear infinite;
+}
+
+@keyframes shimmer{
+  from{ top:-120%; }
+  to{ top:120%; }
+}
+
+/* 📱 Mobile polish */
+@media(max-width:768px){
+
+  .title{
+    font-size:42px;
+  }
+
+  .center-layout{
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .ring3d{
+    transform:scale(.85);
+  }
+
+}
+
+/* ⏳ Countdown Glow Animation */
+
+.timer span{
+  display:inline-block;
+  transition:.3s;
+}
+
+/* glow effect */
+.glowPulse{
+  animation:countGlow .6s ease;
+}
+
+@keyframes countGlow{
+  0%{
+    transform:scale(1);
+    text-shadow:none;
+  }
+  50%{
+    transform:scale(1.25);
+    text-shadow:0 0 15px gold;
+  }
+  100%{
+    transform:scale(1);
+    text-shadow:none;
+  }
+}
+
+/* ❤️ Heartbeat cinematic pulse */
+
+.card{
+  animation:heartbeat 4s ease-in-out infinite;
+  animation-play-state:paused;
+}
+
+@keyframes heartbeat{
+  0%{ transform:scale(1); }
+  25%{ transform:scale(1.01); }
+  40%{ transform:scale(1); }
+  60%{ transform:scale(1.015); }
+  100%{ transform:scale(1); }
+}
+
+/* 🎀 Opening birthday message */
+
+.intro-text{
+  font-size:16px;
+  line-height:1.6;
+  opacity:.9;
+  margin-bottom:10px;
+  animation:fadeIntro 2s ease;
+}
+
+@keyframes fadeIntro{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* 🎉 Confetti Celebration Intro */
+
+#confetti{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:9999;
+}
+
+.confetti-piece{
+  position:absolute;
+  width:8px;
+  height:14px;
+  background:gold;
+  opacity:.9;
+  animation:fall 1.5s linear forwards;
+}
+
+@keyframes fall{
+  0%{
+    transform:translateY(-20px) rotate(0deg);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(100vh) rotate(360deg);
+    opacity:0;
+  }
+}
+/* ✨ Typing Intro Animation */
+
+.typing-line{
+  font-size:18px;
+  margin-bottom:8px;
+  letter-spacing:2px;
+  color:#fff;
+  min-height:24px;
+}
+
+.typing-line::after{
+  content:"|";
+  margin-left:4px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,100%{opacity:1;}
+  50%{opacity:0;}
+}
