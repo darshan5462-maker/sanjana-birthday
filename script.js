@@ -1,5 +1,5 @@
 // 🎶 Music Fade Start
-const music=document.getElementById("bgMusic");
+/*const music=document.getElementById("bgMusic");
 
 document.body.addEventListener("click",()=>{
   music.volume=0;
@@ -12,7 +12,42 @@ document.body.addEventListener("click",()=>{
       music.volume=v;
     }else clearInterval(fade);
   },200);
-},{once:true});
+},{once:true});*/
+
+// 🎶 SMART AUTO PLAY MUSIC (No Button Needed)
+
+// 👑 INVISIBLE AUTO-START ILLUSION
+
+
+
+// music starts muted automatically
+/*music.play().catch(()=>{});
+
+// first tiny interaction = unmute + cinematic fade
+function activateSound(){
+
+  music.muted = false;
+  music.volume = 0;
+
+  let v = 0;
+  const fade = setInterval(()=>{
+    if(v < 1){
+      v += 0.05;
+      music.volume = v;
+    }else{
+      clearInterval(fade);
+    }
+  },150);
+
+  document.removeEventListener("touchstart", activateSound);
+  document.removeEventListener("scroll", activateSound);
+  document.removeEventListener("click", activateSound);
+}
+
+// very natural triggers
+document.addEventListener("touchstart", activateSound);
+document.addEventListener("scroll", activateSound);
+document.addEventListener("click", activateSound);*/
 
 
 // ⏳ Countdown
@@ -88,7 +123,7 @@ window.addEventListener("load",()=>{
 });
 
 // ✨ Typing Intro Animation
-const text = "🎂 Happy Birthday Princess Sanjana 👑";
+/*const text = "🎂 Happy Birthday Princess Sanjana 👑";
 const typingEl = document.getElementById("typingText");
 
 let i = 0;
@@ -103,4 +138,67 @@ function typeEffect(){
 
 window.addEventListener("load",()=>{
   setTimeout(typeEffect,600); // start after confetti
+});*/
+
+// ✨ Typing Intro + Music Sync
+
+const text = "🎂 Happy Birthday Princess Sanjana 👑";
+const typingEl = document.getElementById("typingText");
+const music = document.getElementById("bgMusic");
+
+let i = 0;
+
+// start muted autoplay
+music.play().catch(()=>{});
+
+function typeEffect(){
+
+  if(i < text.length){
+
+    typingEl.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect,60);
+
+  }else{
+
+    // 👑 typing finished → start cinematic music fade
+    music.muted = false;
+    music.volume = 0;
+
+    let v = 0;
+    const fade = setInterval(()=>{
+      if(v < 1){
+        v += 0.05;
+        music.volume = v;
+      }else{
+        clearInterval(fade);
+      }
+    },150);
+
+  }
+}
+
+// start typing after page load
+window.addEventListener("load",()=>{
+  setTimeout(typeEffect,600);
 });
+// 👑 title reveal + music sync after typing
+const title = document.querySelector(".reveal-title");
+
+music.muted = false;
+music.volume = 0;
+
+let v = 0;
+const fade = setInterval(()=>{
+  if(v < 1){
+    v += 0.05;
+    music.volume = v;
+  }else{
+    clearInterval(fade);
+  }
+},150);
+
+// ✨ cinematic title reveal
+setTimeout(()=>{
+  title.classList.add("show");
+},200);

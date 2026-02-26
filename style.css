@@ -284,3 +284,19 @@ body{
   0%,100%{opacity:1;}
   50%{opacity:0;}
 }
+
+/* 👑 Cinematic Title Reveal */
+
+.reveal-title{
+  opacity:0;
+  transform:translateY(20px) scale(.95);
+  transition:all 1s ease;
+}
+
+.reveal-title.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  text-shadow:
+    0 0 10px gold,
+    0 0 25px rgba(255,215,0,.7);
+}
